@@ -1,7 +1,7 @@
 {
-    "name": "procurement-management-web-backend",
+    "name": "wso2-assignment",
     "version": "1.0.0",
-    "description": "",
+    "description": "wso2-assignment",
     "main": "server.js",
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
