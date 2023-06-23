@@ -1,0 +1,163 @@
+openapi: 3.0.1
+info:
+  title: eHealthAPI
+  version: v1
+servers:
+ -
+  url: /
+security:
+ -
+  default: []
+paths:
+  /patient:
+    get:
+      description: Get patient medical Details
+      parameters: []
+      responses:
+        "200":
+          description: ok
+      security:
+       -
+        default: []
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-wso2-application-security:
+        security-types:
+         - oauth2
+        optional: false
+  /patient/{email}:
+    get:
+      summary: get specific patient details
+      description: get specific patient details
+      parameters:
+       -
+        name: email
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: string
+      responses:
+        "200":
+          description: ok
+      security:
+       -
+        default:
+         - view_medical_history
+         - view_own_details
+         - view_own_medical_history
+         - view_personal_details
+       -
+        doctor_security:
+         - view_medical_history
+       -
+        patient_security:
+         - view_own_details
+         - view_own_medical_history
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-wso2-application-security:
+        security-types:
+         - oauth2
+        optional: false
+  /users:
+    post:
+      description: "Create a user \n\nsample payload \n\n {\n    \"name\": \"John Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"dateOfBirth\": \"1990-01-01\",\n    \"role\": \"user\"\n  }"
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              type: object
+        required: true
+      responses:
+        "200":
+          description: ok
+      security:
+       -
+        default: []
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-wso2-application-security:
+        security-types:
+         - oauth2
+        optional: false
+  /medical:
+    post:
+      description: 'add a medical record '
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              type: object
+        required: true
+      responses:
+        "200":
+          description: ok
+      security:
+       -
+        default: []
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-wso2-application-security:
+        security-types:
+         - oauth2
+        optional: false
+components:
+  securitySchemes:
+    default:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://test.com
+          scopes:
+            view_own_details: view_own_details
+            view_personal_details: view_personal_details
+            view_own_medical_history: view_own_medical_history
+            view_medical_history: view_medical_history
+          x-scopes-bindings:
+            view_medical_history: doctor
+            view_personal_details: admin
+            view_own_details: patient
+            view_own_medical_history: patient
+x-wso2-auth-header: Authorization
+x-throttling-tier: ""
+x-wso2-cors:
+  corsConfigurationEnabled: false
+  accessControlAllowOrigins:
+   - '*'
+  accessControlAllowCredentials: false
+  accessControlAllowHeaders:
+   - authorization
+   - Access-Control-Allow-Origin
+   - Content-Type
+   - SOAPAction
+   - apikey
+   - Internal-Key
+  accessControlAllowMethods:
+   - GET
+   - PUT
+   - POST
+   - DELETE
+   - PATCH
+   - OPTIONS
+x-wso2-production-endpoints:
+  urls:
+   - http://localhost:8000/ehealth
+  type: http
+x-wso2-sandbox-endpoints:
+  urls:
+   - http://localhost:8000/ehealth
+  type: http
+x-wso2-basePath: /ehealthapi/v1
+x-wso2-transports:
+ - http
+ - https
+x-wso2-response-cache:
+  enabled: false
+  cacheTimeoutInSeconds: 300

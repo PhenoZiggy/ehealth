@@ -1,0 +1,169 @@
+type: api
+version: v4.1.0
+data:
+  id: 588ad163-e37d-453c-b796-d119cf2181a7
+  name: eHealthAPI
+  context: /ehealthapi
+  version: v1
+  provider: admin
+  lifeCycleStatus: PUBLISHED
+  responseCachingEnabled: false
+  cacheTimeout: 300
+  hasThumbnail: false
+  isDefaultVersion: false
+  isRevision: false
+  revisionId: 0
+  enableSchemaValidation: false
+  type: HTTP
+  transport:
+   - http
+   - https
+  tags: []
+  policies:
+   - Unlimited
+  apiThrottlingPolicy: ""
+  authorizationHeader: Authorization
+  securityScheme:
+   - oauth2
+   - oauth_basic_auth_api_key_mandatory
+  visibility: PUBLIC
+  visibleRoles: []
+  visibleTenants: []
+  mediationPolicies: []
+  subscriptionAvailability: CURRENT_TENANT
+  subscriptionAvailableTenants: []
+  additionalProperties: []
+  additionalPropertiesMap: {}
+  accessControl: NONE
+  accessControlRoles: []
+  businessInformation: {}
+  corsConfiguration:
+    corsConfigurationEnabled: false
+    accessControlAllowOrigins:
+     - '*'
+    accessControlAllowCredentials: false
+    accessControlAllowHeaders:
+     - authorization
+     - Access-Control-Allow-Origin
+     - Content-Type
+     - SOAPAction
+     - apikey
+     - Internal-Key
+    accessControlAllowMethods:
+     - GET
+     - PUT
+     - POST
+     - DELETE
+     - PATCH
+     - OPTIONS
+  websubSubscriptionConfiguration:
+    enable: false
+    secret: ""
+    signingAlgorithm: SHA1
+    signatureHeader: x-hub-signature
+  createdTime: "1687425952756"
+  lastUpdatedTime: 2023-06-23 18:04:47.775
+  endpointConfig:
+    endpoint_type: http
+    sandbox_endpoints:
+      url: http://localhost:8000/ehealth
+    production_endpoints:
+      url: http://localhost:8000/ehealth
+  endpointImplementationType: ENDPOINT
+  scopes:
+   -
+    scope:
+      name: view_medical_history
+      displayName: view_medical_history
+      description: view_medical_history
+      bindings:
+       - doctor
+    shared: false
+   -
+    scope:
+      name: view_own_details
+      displayName: view_own_details
+      description: view_own_details
+      bindings:
+       - patient
+    shared: false
+   -
+    scope:
+      name: view_own_medical_history
+      displayName: view_own_medical_history
+      description: view_own_medical_history
+      bindings:
+       - patient
+    shared: false
+   -
+    scope:
+      name: view_personal_details
+      displayName: view_personal_details
+      description: view_personal_details
+      bindings:
+       - admin
+    shared: false
+  operations:
+   -
+    id: ""
+    target: /patient
+    verb: GET
+    authType: Application & Application User
+    throttlingPolicy: Unlimited
+    scopes: []
+    usedProductIds: []
+    operationPolicies:
+      request: []
+      response: []
+      fault: []
+   -
+    id: ""
+    target: "/patient/{email}"
+    verb: GET
+    authType: Application & Application User
+    throttlingPolicy: Unlimited
+    scopes:
+     - view_medical_history
+     - view_own_details
+     - view_own_medical_history
+     - view_personal_details
+    usedProductIds: []
+    operationPolicies:
+      request: []
+      response: []
+      fault: []
+   -
+    id: ""
+    target: /users
+    verb: POST
+    authType: Application & Application User
+    throttlingPolicy: Unlimited
+    scopes: []
+    usedProductIds: []
+    operationPolicies:
+      request: []
+      response: []
+      fault: []
+   -
+    id: ""
+    target: /medical
+    verb: POST
+    authType: Application & Application User
+    throttlingPolicy: Unlimited
+    scopes: []
+    usedProductIds: []
+    operationPolicies:
+      request: []
+      response: []
+      fault: []
+  categories: []
+  keyManagers:
+   - all
+  advertiseInfo:
+    advertised: false
+    apiOwner: admin
+    vendor: WSO2
+  gatewayVendor: wso2
+  gatewayType: wso2/synapse
+  asyncTransportProtocols: []
+  organizationId: carbon.super
